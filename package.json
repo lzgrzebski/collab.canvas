@@ -1,0 +1,32 @@
+{
+    "name": "collab.canvas",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "classnames": "^2.3.2",
+        "normalize.css": "^8.0.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/classnames": "^2.3.1",
+        "@types/react": "^18.0.26",
+        "@types/react-dom": "^18.0.9",
+        "@typescript-eslint/eslint-plugin": "^5.49.0",
+        "@typescript-eslint/parser": "^5.49.0",
+        "@vitejs/plugin-react-swc": "^3.0.0",
+        "autoprefixer": "^10.4.13",
+        "eslint": "^8.32.0",
+        "eslint-plugin-react": "^7.32.1",
+        "postcss": "^8.4.21",
+        "prettier": "^2.8.3",
+        "typescript": "^4.9.3",
+        "vite": "^4.0.0"
+    }
+}
