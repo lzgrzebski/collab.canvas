@@ -1,0 +1,9 @@
+.wrapper {
+    margin: 0 auto;
+    place-items: flex-start;
+}
+
+.input {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

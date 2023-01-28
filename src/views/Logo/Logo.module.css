@@ -1,0 +1,42 @@
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.logo {
+    margin-bottom: 50px;
+}
+
+.logoText {
+    font-family: Charter;
+    font-size: 40px;
+    font-size: clamp(1.5rem, 3vw + 1rem, 3.125rem);
+    line-height: 1.2;
+    font-weight: 500;
+
+    margin: 0;
+    color: #fff;
+
+    animation: slide ease-in 0.3s forwards;
+}
+
+.animate {
+    animation: draw ease-in 1s forwards;
+    stroke-dasharray: 427.9903259277344;
+    stroke-dashoffset: 427.9903259277344;
+
+    stroke: rgb(255 255 255 / 60%);
+}

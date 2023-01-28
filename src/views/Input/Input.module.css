@@ -1,0 +1,13 @@
+.input {
+    box-shadow: rgb(255 255 255 / 30%) 0px 2px;
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+    min-width: 250px;
+    font-size: clamp(1.5rem, 1vw + 0.8rem, 2.525rem);
+    color: rgb(0 0 0 / 80%);
+}
+
+.input:focus {
+    box-shadow: rgb(255 255 255 / 60%) 0px 3px;
+}

@@ -1,0 +1,27 @@
+.button {
+    position: relative;
+    text-align: center;
+
+    font-size: clamp(0.938rem, 2vw + 1rem, 1.363rem);
+
+    display: inline-block;
+    border-radius: 100px;
+    padding: 20px 30px;
+    color: #fff;
+    font-weight: 700;
+
+    z-index: 1;
+    transition: background-color 0.25s ease-in;
+    background-color: rgb(0 0 0 / 80%);
+    border: 0;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(0 0 0 / 60%);
+}
+
+.button:active {
+    top: 2px;
+    outline: none;
+}
