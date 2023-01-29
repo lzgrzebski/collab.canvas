@@ -1,38 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
+
+import { User } from '../types';
+import { useLocalState } from '../hooks/useLocalState';
 import { Name } from '../views/Name/Name.view';
-import { Toolkit } from '../views/Toolkit/Toolkit.view';
-import { User } from '../views/User/User.view';
-import { Zoom } from '../views/Zoom/Zoom.view';
+import { Users } from '../containers/Users.container';
+import { generateUser } from '../state';
+import { Store } from '../state';
+import { Canvas } from '../containers/Canvas.container';
 
 export const Collab: React.FC = () => {
-    const [showCanvas, setShowCanvas] = useState(false);
+    const [user, setUser] = useLocalState<User>('user');
+    const { provider } = useLoaderData() as Store;
 
-    if (!showCanvas) {
-        return (
-            <>
-                <div style={{ margin: 5, position: 'fixed', right: 0 }}>
-                    <User color="#75485e">K</User>
-                    <User color="#cb904d">L</User>
-                    <User color="#dfcc74">B</User>
-                </div>
-                <Name />
-                <div
-                    style={{
-                        alignItems: 'center',
-                        bottom: 0,
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        left: 0,
-                        position: 'fixed',
-                        right: 0,
-                    }}
-                >
-                    <Zoom />
-                    <Toolkit />
-                </div>
-            </>
-        );
+    const handleName = (name: string) => {
+        setUser(generateUser(name));
+    };
+
+    useEffect(() => {
+        provider.connect();
+
+        return () => {
+            provider.disconnect();
+        };
+    }, []);
+
+    if (!user) {
+        return <Name onName={handleName} />;
     }
+
+    return (
+        <>
+            <div style={{ margin: 5, position: 'fixed', right: 0 }}>
+                <Users user={user} />
+            </div>
+            <Canvas user={user} />
+        </>
+    );
 
     return null;
 };
