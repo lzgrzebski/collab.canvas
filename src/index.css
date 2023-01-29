@@ -61,37 +61,6 @@ canvas {
     touch-action: none;
 }
 
-@keyframes colors {
-    0% {
-        background-color: #51a3a3;
-    }
-    25% {
-        background-color: #75485e;
-    }
-    50% {
-        background-color: #cb904d;
-    }
-    75% {
-        background-color: #dfcc74;
-    }
-    100% {
-        background-color: #c3e991;
-    }
-}
-
-body {
-    margin: 0;
-}
-
-.wrapper {
-    width: 100vw;
-    height: 100vh;
-
-    background-color: #51a3a3;
-
-    /* animation: colors 15s ease infinite; */
-}
-
 @keyframes fade {
     from {
         opacity: 0;

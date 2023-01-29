@@ -1,0 +1,19 @@
+@keyframes colors {
+    0% {
+        background-color: #51a3a3;
+    }
+    50% {
+        background-color: #75485e;
+    }
+    100% {
+        background-color: #cb904d;
+    }
+}
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+.animate {
+    animation: colors 20s ease infinite alternate;
+}

@@ -13,3 +13,4 @@ export const STROKE_OPTIONS = {
     thinning: 0.5,
 } as const;
 export const ZOOM_STEP = 0.05;
+export const DEFAULT_COLOR = '#51a3a3';

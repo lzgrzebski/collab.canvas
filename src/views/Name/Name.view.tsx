@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 
 import { Button } from '../Button/Button.view';
-import { Center } from '../CenterWrapper/CenterWrapper.view';
+import { Center } from '../Center/Center.view';
 import { Input } from '../Input/Input.view';
 import { Text } from '../Text/Text.view';
 
