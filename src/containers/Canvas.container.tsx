@@ -1,18 +1,17 @@
 import * as Y from 'yjs';
 import React, { useEffect, useRef } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import getStroke from 'perfect-freehand';
 
 import { Point, Points, User } from '../types';
-import { Store } from '../state';
 import { get2DPathFromStroke } from '../utils/get2DPathFromStroke';
 import { getPosition } from '../utils/getPosition';
 import { STROKE_OPTIONS } from '../constants';
 import { Button } from '../views/Button/Button.view';
+import { useStore } from '../hooks/useSyncedState';
 
 export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const ref = useRef<HTMLCanvasElement>(null);
-    const { elements, createElement, createPoints } = useLoaderData() as Store;
+    const { elements, createElement, createPoints } = useStore();
     const drawings = useRef<WeakMap<Points, string>>(new WeakMap());
     const currentDrawing = useRef<Y.Array<Point>>();
 
@@ -70,7 +69,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
         return () => {
             elements.unobserveDeep(draw);
         };
-    }, []);
+    }, [elements]);
 
     return (
         <>
