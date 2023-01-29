@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 
 import { Button } from '../Button/Button.view';
@@ -8,16 +8,34 @@ import { Text } from '../Text/Text.view';
 
 import styles from './Name.module.css';
 
-export const Name: React.FC = () => (
-    <CenterWrapper>
-        <form className={cx(styles.wrapper, 'slide')}>
-            <Text>
-                What is your <strong>name</strong>?
-            </Text>
-            <Input autoFocus className={styles.input} />
-            <div>
-                <Button type="submit">Next</Button>
-            </div>
-        </form>
-    </CenterWrapper>
-);
+export const Name: React.FC<{ onName: (name: string) => void }> = ({
+    onName,
+}) => {
+    const [name, setName] = useState('');
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        onName(name);
+    };
+    return (
+        <CenterWrapper>
+            <form
+                className={cx(styles.wrapper, 'slide')}
+                onSubmit={handleSubmit}
+            >
+                <Text>
+                    What is your <strong>name</strong>?
+                </Text>
+                <Input
+                    autoFocus
+                    className={styles.input}
+                    label="Name"
+                    onChange={setName}
+                    value={name}
+                />
+                <div>
+                    <Button type="submit">Next</Button>
+                </div>
+            </form>
+        </CenterWrapper>
+    );
+};

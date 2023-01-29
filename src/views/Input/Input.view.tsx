@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import {
+    AriaTextFieldOptions,
     AriaTextFieldProps,
     mergeProps,
     useFocusRing,
@@ -10,7 +11,7 @@ import cx from 'classnames';
 import styles from './Input.module.css';
 
 export const Input: React.FC<
-    React.ComponentProps<'input'> & AriaTextFieldProps
+    { className: string } & AriaTextFieldOptions<'input'> & AriaTextFieldProps
 > = ({ className, ...props }) => {
     const ref = useRef<HTMLInputElement>(null);
     const { inputProps } = useTextField(props, ref);
