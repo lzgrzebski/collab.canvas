@@ -11,6 +11,7 @@ import { Canvas } from '../containers/Canvas.container';
 import { Wrapper } from '../views/Wrapper/Wrapper.view';
 import { DEFAULT_COLOR } from '../constants';
 import { useStore } from '../hooks/useSyncedState';
+import { useProvider } from '../hooks/useProvider';
 
 const withBgWrapper = <P extends object>(
     Component: React.ComponentType<P>
@@ -32,20 +33,14 @@ export const Collab: React.FC = withBgWrapper(() => {
     const [user, setUser] = useLocalState<User>('user');
     const { provider } = useStore();
 
+    useProvider(provider);
+
     const handleName = (name: string) => {
         if (!name) {
             return;
         }
         setUser(createUser(name));
     };
-
-    useEffect(() => {
-        provider.connect();
-
-        return () => {
-            provider.disconnect();
-        };
-    }, [provider]);
 
     if (!user) {
         return <Name onName={handleName} />;
