@@ -1,17 +1,17 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { getInitialState } from './state';
 
 import { Collab } from './pages/Collab.page';
 import { Home } from './pages/Home.page';
+import { isDefined } from './utils/isDefined';
 
 const router = createBrowserRouter([
     { element: <Home />, path: '/' },
     {
         element: <Collab />,
-        loader: () => {
-            console.log('elko');
-
-            return null;
+        loader: ({ params: { id } }) => {
+            return getInitialState(isDefined(id));
         },
         path: ':id',
     },
