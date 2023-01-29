@@ -8,12 +8,14 @@ import { getPosition } from '../utils/getPosition';
 import { STROKE_OPTIONS } from '../constants';
 import { Button } from '../views/Button/Button.view';
 import { useStore } from '../hooks/useSyncedState';
+import { useResizeObserver } from '../hooks/useResizeObserver';
 
 export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const ref = useRef<HTMLCanvasElement>(null);
     const { elements, createElement, createPoints } = useStore();
     const drawings = useRef<WeakMap<Points, string>>(new WeakMap());
     const currentDrawing = useRef<Y.Array<Point>>();
+    const [width, height] = useResizeObserver(document.body);
 
     const handlePointerDown = (e: React.PointerEvent) => {
         e.currentTarget.setPointerCapture(e.pointerId);
@@ -35,42 +37,49 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     };
 
     useEffect(() => {
-        const draw = (e: Y.YEvent<Points>[]) => {
-            const ctx = ref.current?.getContext('2d');
+        const draw = (editedRef?: Points) => {
+            if (!ref.current) {
+                return;
+            }
+
+            const ctx = ref.current.getContext('2d');
             if (!ctx) {
                 return;
             }
 
-            if (ref.current) {
-                ref.current.width = 1920;
-                ref.current.height = 1080;
-            }
+            ref.current.width = width;
+            ref.current.height = height;
 
             elements.forEach((element) => {
                 const points = element.get('points');
                 const color = element.get('color');
 
                 const drawing =
-                    (points !== e[0].target && drawings.current?.get(points)) ||
+                    (points !== editedRef && drawings.current?.get(points)) ||
                     get2DPathFromStroke(
                         getStroke(points.toArray(), STROKE_OPTIONS)
                     );
 
                 ctx.beginPath();
                 ctx.fillStyle = color;
-                const myPath = new Path2D(drawing);
-                ctx.fill(myPath);
+                ctx.fill(new Path2D(drawing));
 
                 drawings.current?.set(points, drawing);
             });
         };
 
-        elements.observeDeep(draw);
+        draw();
+
+        const handleObserve = (e: Y.YEvent<Points>[]) => {
+            draw(e[0].target);
+        };
+
+        elements.observeDeep(handleObserve);
 
         return () => {
-            elements.unobserveDeep(draw);
+            elements.unobserveDeep(handleObserve);
         };
-    }, [elements]);
+    }, [elements, width, height]);
 
     return (
         <>
@@ -78,9 +87,6 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
                 onPointerDown={handlePointerDown}
                 onPointerMove={handlePointerMove}
                 ref={ref}
-                width={1920}
-                height={1080}
-                style={{ display: 'block' }}
             ></canvas>
             <Button onPress={() => elements.delete(0, elements.length)}>
                 Clear

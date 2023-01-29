@@ -47,11 +47,17 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
+    overflow: hidden;
 }
 
 a {
     cursor: pointer;
     text-decoration: none;
+}
+
+canvas {
+    display: block;
 }
 
 @keyframes colors {

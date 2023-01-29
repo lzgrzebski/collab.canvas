@@ -24,6 +24,7 @@ export type Element = ExtendsYMap<{
     userId: string;
     color: string;
 }>;
+export type Elements = Y.Array<Element>;
 export interface User {
     id: string;
     name: string;
