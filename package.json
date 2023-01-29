@@ -8,13 +8,15 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "ws": "HOST=localhost PORT=3214 npx y-websocket",
-        "start": "yarn ws && yarn dev"
+        "start": "yarn ws && yarn dev",
+        "e2e": "yarn playwright test --project=chromium --headed"
     },
     "dependencies": {
         "@types/uuid": "^9.0.0",
         "classnames": "^2.3.2",
         "normalize.css": "^8.0.1",
         "perfect-freehand": "^1.2.0",
+        "raf-throttle": "^2.0.6",
         "react": "^18.2.0",
         "react-aria": "^3.22.0",
         "react-dom": "^18.2.0",
@@ -24,6 +26,7 @@
         "yjs": "^13.5.44"
     },
     "devDependencies": {
+        "@playwright/test": "^1.30.0",
         "@types/classnames": "^2.3.1",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.26",
