@@ -14,3 +14,4 @@ export const STROKE_OPTIONS = {
 } as const;
 export const ZOOM_STEP = 0.05;
 export const DEFAULT_COLOR = '#51a3a3';
+export const DEFAULT_TIMEOUT = 3000;

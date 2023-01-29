@@ -12,6 +12,7 @@ import { Wrapper } from '../views/Wrapper/Wrapper.view';
 import { DEFAULT_COLOR } from '../constants';
 import { useStore } from '../hooks/useSyncedState';
 import { useProvider } from '../hooks/useProvider';
+import { Notifier } from '../containers/Notifier.container';
 
 const withBgWrapper = <P extends object>(
     Component: React.ComponentType<P>
@@ -48,6 +49,7 @@ export const Collab: React.FC = withBgWrapper(() => {
 
     return (
         <>
+            <Notifier />
             <div style={{ margin: 5, position: 'fixed', right: 0 }}>
                 <Users user={user} />
             </div>

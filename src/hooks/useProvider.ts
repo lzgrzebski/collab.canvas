@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import type { WebsocketProvider } from 'y-websocket';
+import { Status } from '../types';
 
 export const useProvider = (provider: WebsocketProvider) => {
     useEffect(() => {
@@ -11,9 +12,7 @@ export const useProvider = (provider: WebsocketProvider) => {
     }, [provider]);
 
     useEffect(() => {
-        const handleStatus = (
-            status: 'disconnected' | 'connecting' | 'connected'
-        ) => {
+        const handleStatus = (status: { status: Status }) => {
             console.debug('Current status', status);
         };
 

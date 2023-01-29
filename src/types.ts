@@ -31,3 +31,5 @@ export interface User {
     color: string;
     clientId?: number;
 }
+
+export type Status = 'disconnected' | 'connecting' | 'connected';
