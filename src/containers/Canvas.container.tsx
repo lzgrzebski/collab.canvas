@@ -1,17 +1,18 @@
 import * as Y from 'yjs';
 import React, { useEffect, useRef, useState } from 'react';
 import getStroke from 'perfect-freehand';
+import throttle from 'raf-throttle';
 
 import { Point, Points, User } from '../types';
 import { get2DPathFromStroke } from '../utils/get2DPathFromStroke';
 import { getPosition } from '../utils/getPosition';
 import { STROKE_OPTIONS } from '../constants';
-import { Button } from '../views/Button/Button.view';
 import { useStore } from '../hooks/useSyncedState';
 import { useResizeObserver } from '../hooks/useResizeObserver';
 import { BottomBar } from '../views/BottomBar/BottomBar.view';
 import { Zoom } from '../views/Zoom/Zoom.view';
 import { Toolkit } from '../views/Toolkit/Toolkit.view';
+import { TestId } from '../testIds';
 
 export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const ref = useRef<HTMLCanvasElement>(null);
@@ -43,7 +44,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const clear = () => elements.delete(0, elements.length);
 
     useEffect(() => {
-        const draw = (editedRef?: Points) => {
+        const draw = throttle((editedRef?: Points) => {
             if (!ref.current) {
                 return;
             }
@@ -57,6 +58,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
             ref.current.height = height;
 
             const ratio = window.devicePixelRatio;
+            ctx.imageSmoothingEnabled = false;
             ctx.scale(ratio * zoom, ratio * zoom);
 
             elements.forEach((element) => {
@@ -75,7 +77,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
 
                 drawings.current?.set(points, drawing);
             });
-        };
+        });
 
         draw();
 
@@ -93,6 +95,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     return (
         <>
             <canvas
+                data-testid={TestId.Canvas}
                 onPointerDown={handlePointerDown}
                 onPointerMove={handlePointerMove}
                 ref={ref}
