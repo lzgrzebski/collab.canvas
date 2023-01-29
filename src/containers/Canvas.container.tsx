@@ -1,5 +1,5 @@
 import * as Y from 'yjs';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import getStroke from 'perfect-freehand';
 
 import { Point, Points, User } from '../types';
@@ -16,11 +16,12 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const drawings = useRef<WeakMap<Points, string>>(new WeakMap());
     const currentDrawing = useRef<Y.Array<Point>>();
     const [width, height] = useResizeObserver(document.body);
+    const [zoom, setZoom] = useState(1);
 
     const handlePointerDown = (e: React.PointerEvent) => {
         e.currentTarget.setPointerCapture(e.pointerId);
 
-        const points = createPoints(getPosition(e));
+        const points = createPoints(getPosition(e, zoom));
         const element = createElement(points, user);
 
         elements.push([element]);
@@ -33,7 +34,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
         }
 
         const points = currentDrawing.current;
-        points?.push([getPosition(e)]);
+        points?.push([getPosition(e, zoom)]);
     };
 
     useEffect(() => {
@@ -49,6 +50,9 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
 
             ref.current.width = width;
             ref.current.height = height;
+
+            const ratio = window.devicePixelRatio;
+            ctx.scale(ratio * zoom, ratio * zoom);
 
             elements.forEach((element) => {
                 const points = element.get('points');
@@ -79,7 +83,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
         return () => {
             elements.unobserveDeep(handleObserve);
         };
-    }, [elements, width, height]);
+    }, [elements, width, height, zoom]);
 
     return (
         <>

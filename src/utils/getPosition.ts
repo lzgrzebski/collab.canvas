@@ -1,5 +1,5 @@
-export const getPosition = (e: React.PointerEvent) => {
-    const x = e.nativeEvent.offsetX;
-    const y = e.nativeEvent.offsetY;
+export const getPosition = (e: React.PointerEvent, zoom: number) => {
+    const x = e.nativeEvent.offsetX / zoom / window.devicePixelRatio;
+    const y = e.nativeEvent.offsetY / zoom / window.devicePixelRatio;
     return [x, y] as [number, number];
 };
