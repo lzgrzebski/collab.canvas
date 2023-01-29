@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import getStroke from 'perfect-freehand';
 
-import { Element, Point, Points, User } from '../types';
+import { Point, Points, User } from '../types';
 import { Store } from '../state';
 import { get2DPathFromStroke } from '../utils/get2DPathFromStroke';
 import { getPosition } from '../utils/getPosition';
@@ -12,26 +12,17 @@ import { Button } from '../views/Button/Button.view';
 
 export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const ref = useRef<HTMLCanvasElement>(null);
-    const { doc, elements } = useLoaderData() as Store;
+    const { elements, createElement, createPoints } = useLoaderData() as Store;
     const drawings = useRef<WeakMap<Points, string>>(new WeakMap());
     const currentDrawing = useRef<Y.Array<Point>>();
 
     const handlePointerDown = (e: React.PointerEvent) => {
         e.currentTarget.setPointerCapture(e.pointerId);
 
-        const points = new Y.Array<Point>();
-        points.push([getPosition(e)]);
-
-        const element = new Y.Map() as Element;
-
-        doc.transact(() => {
-            element.set('points', points);
-            element.set('userId', user.id);
-            element.set('color', user.color);
-        });
+        const points = createPoints(getPosition(e));
+        const element = createElement(points, user);
 
         elements.push([element]);
-
         currentDrawing.current = points;
     };
 

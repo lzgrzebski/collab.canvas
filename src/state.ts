@@ -3,9 +3,9 @@ import * as Y from 'yjs';
 import { v4 as uuid } from 'uuid';
 
 import { COLORS, PROVIDER_URL } from './constants';
-import type { Element } from './types';
+import type { Element, Point, Points, User } from './types';
 
-export const getInitialState = (id: string) => {
+export const createInitialState = (id: string) => {
     const doc = new Y.Doc();
     const elements = doc.getArray<Element>('elements');
 
@@ -13,14 +13,40 @@ export const getInitialState = (id: string) => {
         connect: false,
     });
 
-    return { awareness: provider.awareness, doc, elements, provider };
+    const createPoints = (point: Point) => {
+        const points = new Y.Array<Point>();
+        points.push([point]);
+
+        return points;
+    };
+
+    const createElement = (points: Points, user: User) => {
+        // FIXME: override yjs Map types to make them stronger
+        const element = new Y.Map() as Element;
+
+        doc.transact(() => {
+            element.set('points', points);
+            element.set('userId', user.id);
+            element.set('color', user.color);
+        });
+
+        return element;
+    };
+
+    return {
+        awareness: provider.awareness,
+        createElement,
+        createPoints,
+        elements,
+        provider,
+    };
 };
 
-export const generateUser = (name: string) => {
+export const createUser = (name: string) => {
     const id = uuid();
     const color = COLORS[Math.floor(Math.random() * COLORS.length)];
 
     return { color, id, name };
 };
 
-export type Store = ReturnType<typeof getInitialState>;
+export type Store = ReturnType<typeof createInitialState>;

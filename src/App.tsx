@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { getInitialState } from './state';
+import { createInitialState } from './state';
 
 import { Collab } from './pages/Collab.page';
 import { Home } from './pages/Home.page';
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     {
         element: <Collab />,
         loader: ({ params: { id } }) => {
-            return getInitialState(isDefined(id));
+            return createInitialState(isDefined(id));
         },
         path: ':id',
     },

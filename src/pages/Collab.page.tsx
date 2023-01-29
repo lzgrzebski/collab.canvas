@@ -5,7 +5,7 @@ import { User } from '../types';
 import { useLocalState } from '../hooks/useLocalState';
 import { Name } from '../views/Name/Name.view';
 import { Users } from '../containers/Users.container';
-import { generateUser } from '../state';
+import { createUser } from '../state';
 import { Store } from '../state';
 import { Canvas } from '../containers/Canvas.container';
 
@@ -14,7 +14,7 @@ export const Collab: React.FC = () => {
     const { provider } = useLoaderData() as Store;
 
     const handleName = (name: string) => {
-        setUser(generateUser(name));
+        setUser(createUser(name));
     };
 
     useEffect(() => {
