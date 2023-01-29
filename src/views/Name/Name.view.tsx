@@ -14,7 +14,7 @@ export const Name: React.FC<{ onName: (name: string) => void }> = ({
     const [name, setName] = useState('');
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onName(name);
+        onName(name.trim());
     };
     return (
         <Center>

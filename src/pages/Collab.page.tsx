@@ -33,6 +33,9 @@ export const Collab: React.FC = withBgWrapper(() => {
     const { provider } = useStore();
 
     const handleName = (name: string) => {
+        if (!name) {
+            return;
+        }
         setUser(createUser(name));
     };
 
