@@ -9,6 +9,7 @@ import {
     mergeProps,
 } from 'react-aria';
 import { ZOOM_STEP } from '../../constants';
+import { toPercentage } from '../../utils/toPercentage';
 
 export const Indicator: React.FC<
     React.ComponentProps<'button'> & AriaButtonProps
@@ -43,9 +44,7 @@ export const Zoom: React.FC<{
         >
             -
         </Indicator>
-        <span className={styles.zoomLevel}>{`${((zoom ?? 0) * 100).toFixed(
-            0
-        )}%`}</span>
+        <span className={styles.zoomLevel}>{toPercentage(zoom)}</span>
         <Indicator
             aria-label="Increase Zoom"
             className={styles.right}
