@@ -8,6 +8,7 @@ import { Store } from '../state';
 import { get2DPathFromStroke } from '../utils/get2DPathFromStroke';
 import { getPosition } from '../utils/getPosition';
 import { STROKE_OPTIONS } from '../constants';
+import { Button } from '../views/Button/Button.view';
 
 export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const ref = useRef<HTMLCanvasElement>(null);
@@ -83,13 +84,18 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     }, []);
 
     return (
-        <canvas
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            ref={ref}
-            width={1920}
-            height={1080}
-            style={{ display: 'block' }}
-        ></canvas>
+        <>
+            <canvas
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                ref={ref}
+                width={1920}
+                height={1080}
+                style={{ display: 'block' }}
+            ></canvas>
+            <Button onPress={() => elements.delete(0, elements.length)}>
+                Clear
+            </Button>
+        </>
     );
 };
