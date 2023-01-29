@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import getStroke from 'perfect-freehand';
 
-import { Point, Points, User } from '../types';
+import { Element, Point, Points, User } from '../types';
 import { Store } from '../state';
 import { get2DPathFromStroke } from '../utils/get2DPathFromStroke';
 import { getPosition } from '../utils/getPosition';
@@ -22,7 +22,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
         const points = new Y.Array<Point>();
         points.push([getPosition(e)]);
 
-        const element = new Y.Map<Y.Array<Point> | string>();
+        const element = new Y.Map() as Element;
 
         doc.transact(() => {
             element.set('points', points);
@@ -41,9 +41,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
         }
 
         const points = currentDrawing.current;
-        if (points && typeof points !== 'string') {
-            points.push([getPosition(e)]);
-        }
+        points?.push([getPosition(e)]);
     };
 
     useEffect(() => {

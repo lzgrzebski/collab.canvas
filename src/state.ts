@@ -3,11 +3,11 @@ import * as Y from 'yjs';
 import { v4 as uuid } from 'uuid';
 
 import { COLORS, PROVIDER_URL } from './constants';
-import type { Point } from './types';
+import type { Element } from './types';
 
 export const getInitialState = (id: string) => {
     const doc = new Y.Doc();
-    const elements = doc.getArray<Y.Map<Y.Array<Point> | string>>('elements');
+    const elements = doc.getArray<Element>('elements');
 
     const provider = new WebsocketProvider(PROVIDER_URL, id, doc, {
         connect: false,
