@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import { useLoaderData, useLocation, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 import { User } from '../types';
 import { useLocalState } from '../hooks/useLocalState';
 import { Name } from '../views/Name/Name.view';
 import { Users } from '../containers/Users.container';
 import { createUser } from '../state';
-import { Store } from '../state';
 import { Canvas } from '../containers/Canvas.container';
 import { Wrapper } from '../views/Wrapper/Wrapper.view';
 import { DEFAULT_COLOR } from '../constants';

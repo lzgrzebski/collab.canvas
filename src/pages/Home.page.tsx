@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import { TestId } from '../testIds';
 
 import { Button } from '../views/Button/Button.view';
 import { Center } from '../views/Center/Center.view';
@@ -19,6 +20,7 @@ export const Home: React.FC = () => {
                 <Logo />
                 <Button
                     className="fade delayed"
+                    data-testid={TestId.Start}
                     onPress={() => {
                         navigate(`/${uuid()}/${getCanvasBg(ref)}`);
                     }}

@@ -7,6 +7,7 @@ import { Input } from '../Input/Input.view';
 import { Text } from '../Text/Text.view';
 
 import styles from './Name.module.css';
+import { TestId } from '../../testIds';
 
 export const Name: React.FC<{ onName: (name: string) => void }> = ({
     onName,
@@ -20,6 +21,7 @@ export const Name: React.FC<{ onName: (name: string) => void }> = ({
         <Center>
             <form
                 className={cx(styles.wrapper, 'slide')}
+                data-testid={TestId.NameForm}
                 onSubmit={handleSubmit}
             >
                 <Text>
@@ -28,6 +30,7 @@ export const Name: React.FC<{ onName: (name: string) => void }> = ({
                 <Input
                     autoFocus
                     className={styles.input}
+                    data-testid={TestId.NameInput}
                     label="Name"
                     onChange={setName}
                     value={name}

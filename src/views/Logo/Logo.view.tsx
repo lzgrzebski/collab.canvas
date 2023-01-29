@@ -1,10 +1,10 @@
 import React from 'react';
-import cx from 'classnames';
 
 import styles from './Logo.module.css';
+import { TestId } from '../../testIds';
 
 export const Logo: React.FC = () => (
-    <div className={styles.logo}>
+    <div className={styles.logo} data-testid={TestId.Logo}>
         <h1 className={styles.logoText}>Collab.canvas</h1>
         <svg viewBox="0 0 403.44 74.33" xmlns="http://www.w3.org/2000/svg">
             <path

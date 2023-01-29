@@ -14,7 +14,7 @@ export const Users: React.FC<{ user: User }> = ({ user }) => {
             return;
         }
         awareness.setLocalState({ ...user, clientId: awareness.clientID });
-    }, [user]);
+    }, [awareness, user]);
 
     useEffect(() => {
         const getUsers = () => {
@@ -28,7 +28,7 @@ export const Users: React.FC<{ user: User }> = ({ user }) => {
         return () => {
             awareness.off('change', getUsers);
         };
-    }, []);
+    }, [awareness]);
 
     return (
         <>
