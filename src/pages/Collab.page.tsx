@@ -12,6 +12,7 @@ import { DEFAULT_COLOR } from '../constants';
 import { useStore } from '../hooks/useSyncedState';
 import { useProvider } from '../hooks/useProvider';
 import { Notifier } from '../containers/Notifier.container';
+import { TopBar } from '../views/TopBar/TopBar.view';
 
 const withBgWrapper = <P extends object>(
     Component: React.ComponentType<P>
@@ -49,9 +50,9 @@ export const Collab: React.FC = withBgWrapper(() => {
     return (
         <>
             <Notifier />
-            <div style={{ margin: 5, position: 'fixed', right: 0 }}>
+            <TopBar>
                 <Users user={user} />
-            </div>
+            </TopBar>
             <Canvas user={user} />
         </>
     );
