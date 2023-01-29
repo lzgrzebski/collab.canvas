@@ -1,0 +1,32 @@
+.indicator {
+    background-color: rgb(0 0 0 / 80%);
+    border: 0;
+    color: #fff;
+    padding: 15px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.left {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.right {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.zoomLevel {
+    display: inline-flex;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0 0 0 / 80%);
+    padding: 15px;
+    color: #fff;
+    border-left: 2px solid rgb(255 255 255 /10%);
+    border-right: 2px solid rgb(255 255 255 /10%);
+    cursor: default;
+    font-weight: 500;
+}

@@ -12,3 +12,4 @@ export const STROKE_OPTIONS = {
     streamline: 0.5,
     thinning: 0.5,
 } as const;
+export const ZOOM_STEP = 0.05;

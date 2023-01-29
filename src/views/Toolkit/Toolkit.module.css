@@ -2,7 +2,7 @@
     position: relative;
     text-align: center;
 
-    border-radius: 10px;
+    border-radius: 8px;
     border: 0;
 
     display: flex;
@@ -10,10 +10,6 @@
 }
 
 .tool {
-    width: 47px;
-    height: 47px;
-    line-height: 47px;
-
     border-radius: 10px;
 
     display: inline-flex;
@@ -26,8 +22,8 @@
 
     border: 0;
     background-color: rgb(0 0 0 / 80%);
-    margin: 2px;
     cursor: pointer;
+    padding: 0 15px;
 }
 
 .tool:hover {

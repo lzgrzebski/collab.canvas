@@ -9,6 +9,9 @@ import { STROKE_OPTIONS } from '../constants';
 import { Button } from '../views/Button/Button.view';
 import { useStore } from '../hooks/useSyncedState';
 import { useResizeObserver } from '../hooks/useResizeObserver';
+import { BottomBar } from '../views/BottomBar/BottomBar.view';
+import { Zoom } from '../views/Zoom/Zoom.view';
+import { Toolkit } from '../views/Toolkit/Toolkit.view';
 
 export const Canvas: React.FC<{ user: User }> = ({ user }) => {
     const ref = useRef<HTMLCanvasElement>(null);
@@ -36,6 +39,8 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
         const points = currentDrawing.current;
         points?.push([getPosition(e, zoom)]);
     };
+
+    const clear = () => elements.delete(0, elements.length);
 
     useEffect(() => {
         const draw = (editedRef?: Points) => {
@@ -92,9 +97,10 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
                 onPointerMove={handlePointerMove}
                 ref={ref}
             ></canvas>
-            <Button onPress={() => elements.delete(0, elements.length)}>
-                Clear
-            </Button>
+            <BottomBar>
+                <Zoom setZoom={setZoom} zoom={zoom} />
+                <Toolkit clear={clear} />
+            </BottomBar>
         </>
     );
 };

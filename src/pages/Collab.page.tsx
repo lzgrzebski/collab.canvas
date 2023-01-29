@@ -23,7 +23,7 @@ export const Collab: React.FC = () => {
         return () => {
             provider.disconnect();
         };
-    }, []);
+    }, [provider]);
 
     if (!user) {
         return <Name onName={handleName} />;
