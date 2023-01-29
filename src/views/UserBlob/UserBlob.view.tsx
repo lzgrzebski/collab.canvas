@@ -5,15 +5,19 @@ import styles from './UserBlob.module.css';
 import { TestId } from '../../testIds';
 
 export const UserBlob: React.FC<
-    React.ComponentProps<'div'> & { color: string; children: string }
-> = ({ className, color, children, ...props }) => (
+    React.ComponentProps<'div'> & {
+        color: string;
+        name: string;
+        isSelf: boolean;
+    }
+> = ({ className, color, name, isSelf, ...props }) => (
     <div
         className={cx(styles.user, className)}
         data-testid={TestId.UserBlob}
         style={{ backgroundColor: color }}
-        title={children}
+        title={`${name}${isSelf ? ' (you)' : ''}`}
         {...props}
     >
-        <span className={styles.initials}>{(children ?? '?').charAt(0)}</span>
+        <span className={styles.initials}>{(name ?? '?').charAt(0)}</span>
     </div>
 );

@@ -33,9 +33,14 @@ export const Users: React.FC<{ user: User }> = ({ user }) => {
     return (
         <>
             {users.map(({ color, clientId, name }) => (
-                <UserBlob color={color} key={clientId}>
-                    {name}
-                </UserBlob>
+                <UserBlob
+                    color={color}
+                    isSelf={Boolean(
+                        clientId && clientId === awareness.clientID
+                    )}
+                    key={clientId}
+                    name={name}
+                />
             ))}
         </>
     );
