@@ -58,6 +58,7 @@ a {
 
 canvas {
     display: block;
+    touch-action: none;
 }
 
 @keyframes colors {
