@@ -7,7 +7,8 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "ws": "HOST=localhost PORT=3214 npx y-websocket"
+        "ws": "HOST=localhost PORT=3214 npx y-websocket",
+        "start": "yarn ws && yarn dev"
     },
     "dependencies": {
         "@types/uuid": "^9.0.0",
