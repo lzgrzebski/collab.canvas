@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 
 import { User } from '../types';
 import type { Store } from '../state';
-import { User as UserBlob } from '../views/User/User.view';
+import { UserBlob } from '../views/UserBlob/UserBlob.view';
 
 export const Users: React.FC<{ user: User }> = ({ user }) => {
     const { awareness } = useLoaderData() as Store;

@@ -1,10 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 
-import styles from './User.module.css';
+import styles from './UserBlob.module.css';
 import { TestId } from '../../testIds';
 
-export const User: React.FC<
+export const UserBlob: React.FC<
     React.ComponentProps<'div'> & { color: string; children: string }
 > = ({ className, color, children, ...props }) => (
     <div
