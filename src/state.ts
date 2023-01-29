@@ -1,8 +1,9 @@
 import { WebsocketProvider } from 'y-websocket';
 import * as Y from 'yjs';
 import { v4 as uuid } from 'uuid';
+import randomColor from 'randomcolor';
 
-import { COLORS, PROVIDER_URL } from './constants';
+import { PROVIDER_URL } from './constants';
 import type { Element, Point, Points, User } from './types';
 
 export const createInitialState = (id: string) => {
@@ -44,7 +45,9 @@ export const createInitialState = (id: string) => {
 
 export const createUser = (name: string) => {
     const id = uuid();
-    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const color = randomColor({
+        luminosity: 'dark',
+    });
 
     return { color, id, name };
 };

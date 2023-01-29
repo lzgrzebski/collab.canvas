@@ -1,5 +1,3 @@
-export const COLORS = ['#CCA43B', '#36558F', '#40376E', '#40376E', '#D36582'];
-
 export const HOST = import.meta.env.HOST ?? 'localhost';
 export const PORT = import.meta.env.PORT ?? '3214';
 export const PROVIDER_URL = `${
