@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 import { Button } from '../views/Button/Button.view';
-import { CenterWrapper } from '../views/CenterWrapper/CenterWrapper.view';
+import { Center } from '../views/CenterWrapper/CenterWrapper.view';
 import { Logo } from '../views/Logo/Logo.view';
 
 export const Home: React.FC = () => {
     const navigate = useNavigate();
     return (
-        <CenterWrapper>
+        <Center>
             <Logo />
             <Button
                 className="fade delayed"
@@ -19,6 +19,6 @@ export const Home: React.FC = () => {
             >
                 Start drawing
             </Button>
-        </CenterWrapper>
+        </Center>
     );
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 
 import { Button } from '../Button/Button.view';
-import { CenterWrapper } from '../CenterWrapper/CenterWrapper.view';
+import { Center } from '../CenterWrapper/CenterWrapper.view';
 import { Input } from '../Input/Input.view';
 import { Text } from '../Text/Text.view';
 
@@ -17,7 +17,7 @@ export const Name: React.FC<{ onName: (name: string) => void }> = ({
         onName(name);
     };
     return (
-        <CenterWrapper>
+        <Center>
             <form
                 className={cx(styles.wrapper, 'slide')}
                 onSubmit={handleSubmit}
@@ -36,6 +36,6 @@ export const Name: React.FC<{ onName: (name: string) => void }> = ({
                     <Button type="submit">Next</Button>
                 </div>
             </form>
-        </CenterWrapper>
+        </Center>
     );
 };
