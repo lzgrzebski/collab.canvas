@@ -17,6 +17,7 @@
         "normalize.css": "^8.0.1",
         "perfect-freehand": "^1.2.0",
         "raf-throttle": "^2.0.6",
+        "randomcolor": "^0.6.2",
         "react": "^18.2.0",
         "react-aria": "^3.22.0",
         "react-dom": "^18.2.0",
