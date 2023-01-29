@@ -4,13 +4,16 @@ import { createInitialState } from './state';
 
 import { Collab } from './pages/Collab.page';
 import { Home } from './pages/Home.page';
-import { Error } from './pages/Error.page';
 import { isDefined } from './utils/isDefined';
+import { NotFound } from './pages/NotFound.page';
+import { Error } from './pages/Error.page';
 
 const router = createBrowserRouter([
+    { element: <NotFound />, path: '*' },
     { element: <Home />, errorElement: <Error />, path: '/' },
     {
         element: <Collab />,
+        errorElement: <Error />,
         loader: ({ params: { id } }) => {
             return createInitialState(isDefined(id));
         },
