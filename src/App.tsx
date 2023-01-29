@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { createInitialState } from './state';
 
+import { createInitialState } from './state';
 import { Collab } from './pages/Collab.page';
 import { Home } from './pages/Home.page';
 import { isDefined } from './utils/isDefined';
