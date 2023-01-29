@@ -47,8 +47,8 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
             }
 
             elements.forEach((element) => {
-                const points = element.get('points') as Points;
-                const color = element.get('color') as string;
+                const points = element.get('points');
+                const color = element.get('color');
 
                 const drawing =
                     (points !== e[0].target && drawings.current?.get(points)) ||
@@ -64,6 +64,7 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
                 drawings.current?.set(points, drawing);
             });
         };
+
         elements.observeDeep(draw);
 
         return () => {
