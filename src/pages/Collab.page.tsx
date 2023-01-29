@@ -21,7 +21,7 @@ const withBgWrapper = <P extends object>(
         const canvasBg = window.atob(bg ?? '') || DEFAULT_COLOR;
         return (
             <Wrapper backgroundColor={canvasBg}>
-                <Component {...(props as P)} />{' '}
+                <Component {...(props as P)} />
             </Wrapper>
         );
     };
