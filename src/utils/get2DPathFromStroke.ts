@@ -1,3 +1,5 @@
+// credits: https://github.com/steveruizok/perfect-freehand#rendering
+
 const average = (a: number, b: number) => (a + b) / 2;
 
 export const get2DPathFromStroke = (points: number[][]) => {
