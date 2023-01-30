@@ -8,7 +8,7 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "ws": "HOST=localhost PORT=3214 npx y-websocket",
-        "start": "yarn ws && yarn dev",
+        "start": "yarn ws & yarn dev",
         "e2e": "yarn playwright test --project=chromium --headed"
     },
     "dependencies": {
