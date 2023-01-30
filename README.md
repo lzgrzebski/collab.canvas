@@ -1,5 +1,7 @@
 # collab.canvas
 
+https://user-images.githubusercontent.com/5301136/215365476-50e087ba-17b3-49e3-a7a8-2020c5061fa9.mov
+
 Simple collaborative free-drawing app. Powered by conflict-free replicated data type (CRDT) via `yjs` and `y-websocket`. For smooth drawing uses `perfect-freehand`.
 
 To run locally:
