@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { User } from '../types';
@@ -36,12 +36,15 @@ export const Collab: React.FC = withBgWrapper(() => {
 
     useProvider(provider);
 
-    const handleName = (name: string) => {
-        if (!name) {
-            return;
-        }
-        setUser(createUser(name));
-    };
+    const handleName = useCallback(
+        (name: string) => {
+            if (!name) {
+                return;
+            }
+            setUser(createUser(name));
+        },
+        [setUser]
+    );
 
     if (!user) {
         return <Name onName={handleName} />;

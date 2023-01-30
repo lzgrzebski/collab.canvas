@@ -1,5 +1,5 @@
 import * as Y from 'yjs';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import getStroke from 'perfect-freehand';
 import throttle from 'raf-throttle';
 
@@ -41,7 +41,10 @@ export const Canvas: React.FC<{ user: User }> = ({ user }) => {
         points?.push([getPosition(e, zoom)]);
     };
 
-    const clear = () => elements.delete(0, elements.length);
+    const clear = useCallback(
+        () => elements.delete(0, elements.length),
+        [elements]
+    );
 
     useEffect(() => {
         const draw = throttle((editedRef?: Points) => {
